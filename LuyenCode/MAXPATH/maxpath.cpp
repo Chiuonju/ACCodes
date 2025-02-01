@@ -21,23 +21,21 @@ Chiuonju() {
             cin >> a[i][j];
         }
     }
-    dp[1][1] = a[1][1];
-    for (int i = 1; i <= m; ++i)
+
+    for (int i = 1; i <= m; ++i)  
     {
-        for (int j = 1; j <= n; ++j)
+        dp[i][1] = a[i][1];
+    }
+
+    for (int i = 2; i <= n; ++i)
+    {
+        for (int j = 1; j <= m; ++j)
         {
-           dp[i][j] = max({dp[i][j], dp[i][j - 1] + a[i][j], dp[i - 1][j - 1] + a[i][j], dp[i + 1][j - 1] + a[i][j]});
+            dp[j][i] = max({dp[j][i - 1] + a[j][i], dp[j + 1][i - 1] + a[j][i], dp[j - 1][i - 1] + a[j][i]});
         }
     }
-     for (int i = 1; i <= m; ++i)
-    {
-        for (int j = 1; j <= n; ++j)
-        {
-            cout << dp[i][j] << ' ';
-        }
-        cout << '\n';
-    }
-    
+
+
     for (int i = 1; i <= m; ++i)
     {
         ans = max(ans, dp[i][n]);
