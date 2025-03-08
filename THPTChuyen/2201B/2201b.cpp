@@ -5,12 +5,20 @@ using namespace std;
 
 const int maxn = 1e6 + 7;
 
-int a, b;
+int n, a[maxn];
+long long dp[maxn];
 
-Chiuonju() {
+Chiuonju()
+{
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr); cout.tie(nullptr);
 
-	cin >> a >> b;
-	cout << max(a, b);
+    cin >> n;
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
+
+    for (int i = 1; i <= n; ++i)
+    {
+    }
+    cout << dp[n];
 }
