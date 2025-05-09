@@ -7,6 +7,7 @@ const int maxn = 1e6 + 7;
 
 int n, k;
 int a[maxn], b[maxn];
+set<int> se;
 
 Chiuonju()
 {
@@ -14,26 +15,15 @@ Chiuonju()
     cin.tie(nullptr); cout.tie(nullptr);
 
     cin >> n >> k;
-    for (int i = 1; i <= n; ++i) 
-    {
-        a[i] = i;
-    }
     for (int i = 1; i <= n; ++i)
     {
-        if ((i + k) % n == 0) b[n] = a[i];
-        else b[(i + k) % n ] = a[i];
+        if (i - k > 0 and se.find(i - k) == se.end()) 
+            a[i] = i - k, se.insert(i - k);
+        else if (i + k <= n and se.find(i + k) == se.end() ) a[i] = i + k, se.insert(i + k);
     }
-    
-   for (int i = 1; i <= n; ++i)
-    {
-        if (abs(a[i] - b[i]) != k) 
-        {
-            cout << -1;
-            return 0;
-        }
-    } 
-    for(int i = 1; i <= n; ++i)
-    {
-        cout << b[i] << ' ';
-    }
- }
+    for (int i = 1; i <= n; ++i)
+        if (a[i] < 1 or a[i] > n) return cout << -1, 0;
+    for (int i = 1; i <= n; ++i)
+        cout << a[i] << " ";
+
+}
